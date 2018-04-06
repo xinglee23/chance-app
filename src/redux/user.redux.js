@@ -1,45 +1,101 @@
-const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
-const ERROR_MSG = 'ERROR_MSG'
+import axios from 'axios';
+import { getRedirectPath } from '../util';
+const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+const ERROR_MSG = 'ERROR_MSG';
+const LOAD_DATA = 'LOAD_DATA';
 
 const initState = {
+  redirectTo: '',
   isAuth: '',
   msg: '',
   user:'',
-  pwd: '',
   type: ''
 }
-// reducer
-export function user(state, action) {
-  switch(action.type) {
-    case REGISTER_SUCCESS: 
-      return {...state, msg: '', isAuth: true, ...action.payload}
-    case ERROR_MSG:
-      return {...state, isAuth: false, msg: action.msg}
-    return state
-   }
+
+function errorMSG(msg) {
+  return {msg, type: ERROR_MSG}
 }
 
-function registerSuccess() {
+function registerSuccess(data) {
+  console.log(JSON.stringify(data) + "234")
   return {type: REGISTER_SUCCESS, payload: data}
+}
+
+function loginSuccess(data) {
+  return {type: LOGIN_SUCCESS, payload: data}
 }
 
 function errorMsg(msg) {
   return {msg, type:ERROR_MSG}
 }
-  
+
+export function loadData(userinfo) {
+  return {type: LOAD_DATA, payload: userinfo}
+}
+
+// reducer
+export function user(state=initState, action) {
+  switch(action.type) {
+    case REGISTER_SUCCESS: 
+      return {...state, msg: '', isAuth: true, redirectTo:getRedirectPath(action.payload), ...action.payload}
+    case LOGIN_SUCCESS:
+      return {...state, msg: '', isAuth: true, redirectTo:getRedirectPath(action.payload), ...action.payload}
+    case ERROR_MSG:
+      return {...state, isAuth: false, msg: action.msg}
+    case LOAD_DATA: 
+      return {...state, ...action.payload}
+    default:
+      return state
+   }
+}
+
+export function userinfo() {
+    axios.post( '/user/info')
+    .then(res => {
+      if(res.status === 200) {
+        if(res.data.code === 0) {
+          
+        }
+      } else {
+        this.props.loadData(res.data.data);
+        this.props.history.push('./login');
+      }
+  })
+}
+
+export function login({user, pwd}) {
+  if(!user || !pwd) {
+    return errorMSG('must have user and password');
+  }
+  return dispatch => {
+    axios.post('/user/login', {user, pwd})
+    .then(res => {
+      if(res.status === 200 && res.data.code === 0) {
+        // dispatch(registerSuccess({user, pwd}))
+        dispatch(loginSuccess(res.data.data))
+      } else {
+        dispatch(errorMsg(res.data.msg))
+      }
+    })
+  }
+}
+
 export function register({user, pwd, repeatpwd, type}) {
   if(!user || !pwd || !type) {
-    return ERROR_MSG('must have password')
+    return errorMSG('must have password')
   }
   if(pwd !== repeatpwd) {
-    return ERROR_MSG('password different')
+    return errorMSG('password different')
   }
-  axios.post('/user/register', {yser, pwd, type})
+  return dispatch => {
+    axios.post('/user/register', {user, pwd, type})
     .then(res => {
-      if(res.status == 200 && res.data.code === 0) {
+      if(res.status === 200 && res.data.code === 0) {
         dispatch(registerSuccess({user, pwd, type}))
       } else {
         dispatch(errorMsg(res.data.msg))
       }
     })
+  }
 }

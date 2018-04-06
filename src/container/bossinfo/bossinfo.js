@@ -3,8 +3,12 @@ import { NavBar } from 'antd-mobile';
 
 class BossInfo extends React.Component{
   render() {
-    <div>
-      <NavBar mode="dark">BOSS完善信息页</NavBar>
-    </div>
+    return (
+      <div>
+        <NavBar mode="dark">BOSS完善信息页</NavBar>
+      </div>
+    )
   }
 }
+
+export default BossInfo
