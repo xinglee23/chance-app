@@ -6,11 +6,25 @@ const User = model.getModel('user');
 const _filter = {'pwd': 0, '_v': 0};
 
 Router.get('/list', function(req, res) {
-  User.find({}, function(err, doc) {
-    return res.json(doc)
+  const {type} = req.query;
+  User.find({type}, function(err, doc) {
+    return res.json({code:0, data:doc})
   })
 })
-
+Router.post('/update', function(req, res) {
+  const userid = req.cookies.userid;
+  if(!userid) {
+    return json.dumps({code: 1});
+  }
+  const body = req.body;
+  User.findByIdAndUpdate(userid, body, function(err, doc) {
+    const data = Object.assign({}, {
+      user: doc.user,
+      type: doc.type
+    }, body)
+    return res.json({code: 0, data})
+  })
+})
 Router.post('/login', function(req, res) {
   const {user, pwd} = req.body;
   User.findOne({user, pwd:md5Pwd(pwd)}, _filter, function(err, doc) {
@@ -41,7 +55,7 @@ Router.post('/register', function(req, res) {
   })
 })
 Router.get('/info', function(req, res) {
-  const {userid} = res.cookie;
+  const {userid} = res.cookies;
   if(!userid) {
     return res.json({code: 1});
   }
