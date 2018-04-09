@@ -3,6 +3,7 @@ const utils = require('utility');
 const Router = express.Router();
 const model = require('./model');
 const User = model.getModel('user');
+const Chat = model.getModel('chat');
 const _filter = {'pwd': 0, '_v': 0};
 
 Router.get('/list', function(req, res) {
@@ -11,13 +12,23 @@ Router.get('/list', function(req, res) {
     return res.json({code:0, data:doc})
   })
 })
+Router.get('/getmsglist', function(req, res) {
+  const userid = req.cookies.userid;
+  // {'$or':[{from:user, to: user}]}
+  Chat.find({}, function(err, doc) {
+    if(!err) {
+      return res.json({code: 0, msg: doc});
+    }
+  })
+})
 Router.post('/update', function(req, res) {
   const userid = req.cookies.userid;
   if(!userid) {
-    return json.dumps({code: 1});
+    // return json.dumps({code: 1});
+    return JSON.dumps({code: 1});
   }
   const body = req.body;
-  User.findByIdAndUpdate(userid, body, function(err, doc) {
+  User.findByIdAndUpdate({_id: userid}, body, function(err, doc) {
     const data = Object.assign({}, {
       user: doc.user,
       type: doc.type
@@ -55,7 +66,7 @@ Router.post('/register', function(req, res) {
   })
 })
 Router.get('/info', function(req, res) {
-  const {userid} = res.cookies;
+  const userid = res.cookies;
   if(!userid) {
     return res.json({code: 1});
   }

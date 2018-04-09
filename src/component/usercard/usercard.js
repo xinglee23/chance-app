@@ -1,10 +1,16 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { WingBlank, WhiteSpace, Card} from 'antd-mobile';
+import { withRouter } from 'react-router-dom';
 
+@withRouter
 class UserCard extends React.Component {
   static propTypes = {
     selectAvatar: propTypes.func.isRequired
+  }
+
+  handleClick(v) {
+    this.props.history.push(`/chat/${v.user}`);
   }
 
   render() {
@@ -12,7 +18,9 @@ class UserCard extends React.Component {
       <WingBlank>
         <WhiteSpace/>
           {this.state.userlist.map(v => (
-            v.avatar ? <Card key={v._id}>
+            v.avatar ? <Card 
+                        key={v._id}
+                        onClick={() => this.handleClick(v)}>
               <Card.Header 
                 title={v.user}
                 thumb={require(`../img/${v.avatar}.png`)}

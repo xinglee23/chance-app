@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import 'antd-mobile/dist/antd-mobile.css';
 import { connect } from 'react-redux';
 import { login } from '../../redux/user.redux';
-import imoocForm from '../../component/imooc.form/imooc.form'
+import imoocForm from '../../component/imooc.form/imooc.form';
 
 @connect(
   state => state.user,

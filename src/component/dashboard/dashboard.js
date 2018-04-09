@@ -3,22 +3,11 @@ import { NavBar } from 'antd-mobile';
 import NavLinkbar from '../../component/navlink/navlink';
 import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
-import Boss from '../../component/boss/boss'
-
-
-function Genius() {
-  return (
-    <div>牛人列表</div>
-  )
-}
+import Boss from '../../component/boss/boss';
+import Genius from '../../component/genius/genius';
+import User from '../../component/user/user';
 
 function Msg() {
-  return (
-    <div>牛人列表</div>
-  )
-}
-
-function User() {
   return (
     <div>牛人列表</div>
   )
@@ -28,12 +17,12 @@ function User() {
   state =>  state
 )
 class Dashboard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
 
-    }
-  }
+  //   }
+  // }
 
   render() {
     const {pathname} = this.props.location;

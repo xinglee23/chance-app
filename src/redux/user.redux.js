@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { getRedirectPath } from '../util';
 const AUTH_SUCCESS = 'AUTH_SUCCESS';
+const LOGOUT = 'LOGOUT';
 const ERROR_MSG = 'ERROR_MSG';
 const LOAD_DATA = 'LOAD_DATA';
 
@@ -41,6 +42,10 @@ export function update(data) {
   }
 }
 
+export function logoutSubmit() {
+  return {type:LOGOUT}
+}
+
 // reducer
 export function user(state=initState, action) {
   switch(action.type) {
@@ -50,7 +55,9 @@ export function user(state=initState, action) {
       return {...state, isAuth: false, msg: action.msg}
     case LOAD_DATA: 
       return {...state, ...action.payload}
-    default:
+    case LOGOUT:
+      return {initState, redirectTo: '/login'}
+      default:
       return state
    }
 }
