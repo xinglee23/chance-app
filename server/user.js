@@ -19,19 +19,19 @@ Router.get('/getmsglist', function(req, res) {
     userdoc.forEach(v=>{
       users[v._id] = {name:v.user, avatar:v.avatar}
     })
-    Chat.find({'$or':[{from:user},{to:user}]}, function(err, doc) {
-      if(!err) {
-        return res.json({code: 0, msg: doc, users:users});
-      }
-    }) 
+    // Chat.find({'$or':[{from:user},{to:user}]}, function(err, doc) {
+    //   if(!err) {
+    //     return res.json({code: 0, msg: doc, users:users});
+    //   }
+    // }) 
   })
   // {'$or':[{from:user, to: user}]}
 })
 Router.post('/update', function(req, res) {
   const userid = req.cookies.userid;
   if(!userid) {
-    // return json.dumps({code: 1});
-    return JSON.dumps({code: 1});
+    return json.dumps({code: 1});
+    // return JSON.dumps({code: 1});
   }
   const body = req.body;
   User.findByIdAndUpdate({_id: userid}, body, function(err, doc) {
@@ -39,7 +39,7 @@ Router.post('/update', function(req, res) {
       user: doc.user,
       type: doc.type
     }, body)
-    return res.json({code: 0, data})
+    return res.json({code:0, data})
   })
 })
 Router.post('/login', function(req, res) {

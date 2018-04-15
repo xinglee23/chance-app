@@ -30,11 +30,12 @@ export function chat(state=initState, action) {
 
 function msgList(msgs, users, userid) {
   return {type: 'MSG_LIST', payload: {msgs, users, userid}
+  }
 }
 
-function msgRecv(msg,users) {
+function msgRecv(msg, userid) {
   return {userid, type:'MSG_RECV', payload:msg}
-}  
+}
 
 export function recvMsg() {
   return (dispatch, getState) => {
@@ -50,6 +51,7 @@ export function sendMsg({from, to, msg}) {
     socket.emit('sendmsg', {from, to, msg});
   }
 }
+
 export function getMsgList() {
   return (dispatch, getState) => {
     axios.get('/user/getmsglist')
@@ -57,8 +59,7 @@ export function getMsgList() {
         if(res.status===200 && res.data.code===0) {
           const userid = getState().user._id;
           dispatch(msgList(res.data.msgs, res.data.users));
-        }
-      })
-    }
+      }
+    })
   }
 }

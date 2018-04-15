@@ -5,18 +5,13 @@ import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import Boss from '../../component/boss/boss';
 import Genius from '../../component/genius/genius';
+import Msg from '../../component/msg/msg';
 import User from '../../component/user/user';
-import { getmsgList, sendMsg, recvMsg } from '../../redux/chat.redux';
-
-function Msg() {
-  return (
-    <div>牛人列表</div>
-  )
-}
+import { getMsgList, sendMsg, recvMsg } from '../../redux/chat.redux';
 
 @connect(
   state =>  state,
-  {getmsgList, sendMsg, recvMsg}
+  {getMsgList, sendMsg, recvMsg}
 )
 class Dashboard extends React.Component {
   // constructor(props) {
@@ -27,8 +22,10 @@ class Dashboard extends React.Component {
   // }
 
   componentDidMount() {
-    this.props.getmsgList();
-    this.props.recvMsg();
+    if(!this.props.chat.chatmsg.length) {
+      this.props.getMsgList();
+      this.props.recvMsg();
+    }
   }
 
   render() {
