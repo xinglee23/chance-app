@@ -11,7 +11,7 @@ import BossInfo from './container/bossinfo/bossinfo';
 import GeniusInfo from './container/geniusinfo/geniusinfo'
 import AuthRoute from './component/authroute/authroute';
 import Dashboard from './component/dashboard/dashboard';
-import Chat from '.component/chat/chat';
+import Chat from './component/chat/chat';
 import reducers from './reducer';
 import './config';
 import './index.css';
