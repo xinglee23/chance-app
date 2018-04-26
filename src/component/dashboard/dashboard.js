@@ -10,7 +10,7 @@ import User from '../../component/user/user';
 import { getMsgList, sendMsg, recvMsg } from '../../redux/chat.redux';
 
 @connect(
-  state =>  state,
+  state => state,
   {getMsgList, sendMsg, recvMsg}
 )
 class Dashboard extends React.Component {
@@ -29,8 +29,8 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    const {pathname} = this.props.location;
-    console.log("path is " + JSON.stringify(this.props.location))
+    // const pathname = this.props.location.pathname;
+    const pathname = '/boss';
     const user = this.props.user;
     const navList = [
       {
@@ -64,9 +64,11 @@ class Dashboard extends React.Component {
         component: User
       }
     ]
+
+    console.log("navList find what" + JSON.stringify(navList.find(v=>v.path===pathname)))
     return (
       <div>
-        <NavBar className='fixed-header' mode='dark'>{navList.find(v => v.path===pathname).title}</NavBar>
+        <NavBar className='fixed-header' mode='dard'>{navList.find(v => v.path===pathname).title}</NavBar>
         <div style={{marginTop:45}}>
           <Switch>
             {navList.map(v => (

@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
 import axios from 'axios';
-const socket = io('ws://loaclhost:9093');
+const socket = io('ws://localhost:9093');
 
 // 获取聊天列表
 const MSG_LIST = 'MSG_LIST';

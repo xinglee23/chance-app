@@ -30,6 +30,7 @@ export function loadData(userinfo) {
 }
 
 export function update(data) {
+  console.log(".......")
   return dispatch => {
     axios.post('/user/update', data)
       .then(res => {

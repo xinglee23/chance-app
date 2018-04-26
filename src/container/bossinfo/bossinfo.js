@@ -18,11 +18,16 @@ class BossInfo extends React.Component{
       money: '',
       desc: ''
     }
+    this.keep = this.keep.bind(this);
   }
   onChange(key, val) {
     this.setState({
       [key]: val
     })
+  }
+
+  keep() {
+    this.props.update(this.state);
   }
   render() {
     const path = this.props.location.pathname;
@@ -56,7 +61,7 @@ class BossInfo extends React.Component{
         </TextareaItem>
         <Button 
           type='primary'
-          onClick={this.props.update(this.state)}
+          onClick={this.keep}
           >保存</Button>
       </div>
     )
