@@ -11,14 +11,13 @@ const io = require('socket.io')(server);
 
 // 监听
 io.on('connection', function(socket) {
-  console.log('user login');
   socket.on('sendmsg', function(data) {
     // 广播，发送消息到全局
     // io.emit('recvmsg', data);
     const {from, to, msg} = data;
     const chatid = [from, to].sort().join('_');
     Chat.create({chatid, from, to, content: msg}, function(err, doc) {
-      io.emit('recvmsg', Object.assign({}, d._doc));
+      io.emit('recvmsg', Object.assign({}, doc._doc));
     })
   })
 })

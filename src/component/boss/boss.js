@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import UserCard from '../usercard/usercard';
 import { getUserList } from '../../redux/chatuser.redux';
 
-
 @connect(
   state => state.chatuser,
   { getUserList }

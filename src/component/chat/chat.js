@@ -23,7 +23,6 @@ class Chat extends React.Component {
     },0)
   }
   handleSubmit() {
-    // socket.emit('senfmsg', {text:this.state.text});
     const from = this.props.user._id;
     const to = this.props.match.params.user;
     const msg = this.state.text;
