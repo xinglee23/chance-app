@@ -30,8 +30,6 @@ class Dashboard extends React.Component {
 
   render() {
     const pathname = this.props.location.pathname;
-    console.log("pathname now is " + JSON.stringify(pathname))
-    // const pathname = '/boss';
     const user = this.props.user;
     const navList = [
       {
@@ -65,8 +63,7 @@ class Dashboard extends React.Component {
         component: User
       }
     ]
-
-    console.log("navList find what" + JSON.stringify(navList.find(v=>v.path===pathname)))
+    
     return (
       <div>
         <NavBar className='fixed-header' mode='dard'>{navList.find(v => v.path===pathname).title}</NavBar>

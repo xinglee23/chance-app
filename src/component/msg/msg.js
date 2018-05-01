@@ -53,7 +53,6 @@ class Msg extends React.Component{
             </Item>
           </List>
           })}
-        <h2>消息列表</h2>
       </div>
     )
   }

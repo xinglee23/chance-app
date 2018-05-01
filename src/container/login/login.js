@@ -1,11 +1,11 @@
 import React from 'react'
-import Logo from '../../component/logo/logo';
-import { Button, WhiteSpace, WingBlank, InputItem, List } from 'antd-mobile';
-import { Redirect } from 'react-router-dom';
-import 'antd-mobile/dist/antd-mobile.css';
-import { connect } from 'react-redux';
-import { login } from '../../redux/user.redux';
-import imoocForm from '../../component/imooc.form/imooc.form';
+import Logo from '../../component/logo/logo'
+import { Button, WhiteSpace, WingBlank, InputItem, List } from 'antd-mobile'
+import { Redirect } from 'react-router-dom'
+import 'antd-mobile/dist/antd-mobile.css'
+import { connect } from 'react-redux'
+import { login } from '../../redux/user.redux'
+import imoocForm from '../../component/imooc.form/imooc.form'
 
 @connect(
   state => state.user,
@@ -20,7 +20,7 @@ class Login extends React.Component {
   }
 
   register() {
-    this.props.history.push('./register')
+    this.props.history.push('/register')
   }
   handleLogin() {
     this.props.login(this.props.state);
@@ -34,10 +34,12 @@ class Login extends React.Component {
         <WingBlank>
           <List>
             {this.props.msg ? <p className="error-msg">{this.props.msg}</p> : null}
-            <InputItem
+            <InputItem 
+              className="input-name"
               onChange={v=>this.props.handleChange('user', v)}
             >用户</InputItem>
             <InputItem
+              className="input-pwd"
               type='password'
               onChange={v=>this.props.handleChange('pwd', v)}
             >密码</InputItem>
