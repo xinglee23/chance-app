@@ -18,6 +18,7 @@ class AvatarSelector extends React.Component {
                           icon: require(`../img/${v}.png`),
                           text: v
                         }));
+    // 显示已经选择的头像
     const gridHeader = this.state.icon
                        ? (<div>
                             <span>已选择头像</span>

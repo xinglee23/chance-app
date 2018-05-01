@@ -45,7 +45,7 @@ function msgRead({from,userid,num}){
 
 export function recvMsg() {
   return (dispatch, getState) => {
-    socket.on('recvMsg', function(data) {
+    socket.on('recvmsg', function(data) {
       const userid = getState().user._id;
       dispatch(msgRecv(data, userid));
     })

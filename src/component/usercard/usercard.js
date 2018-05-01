@@ -1,23 +1,30 @@
-import React from 'react';
-import propTypes from 'prop-types';
-import { WingBlank, WhiteSpace, Card} from 'antd-mobile';
-import { withRouter } from 'react-router-dom';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { changeRedirectTo } from '../../redux/user.redux'
+import { WingBlank, WhiteSpace, Card} from 'antd-mobile'
+import { withRouter } from 'react-router-dom'
 
+@connect(
+  state => state,
+  { changeRedirectTo }
+)
 @withRouter
 class UserCard extends React.Component {
   static propTypes = {
-    selectAvatar: propTypes.func.isRequired
+    userlist: PropTypes.array.isRequired
   }
 
   handleClick(v) {
-    this.props.history.push(`/chat/${v._id}`);
+    this.props.history.push(`/chat/${v._id}`)
+    this.props.changeRedirectTo(`/chat/${v._id}`)
   }
 
   render() {
     return (
       <WingBlank>
         <WhiteSpace/>
-          {this.state.userlist.map(v => (
+          {this.props.userlist.map(v => (
             v.avatar ? <Card 
                         key={v._id}
                         onClick={() => this.handleClick(v)}>
@@ -33,6 +40,7 @@ class UserCard extends React.Component {
                 ))}
                 {v.type==='boss' ? <div>薪资:{v.money}</div> : null}
               </Card.Body>
+              <Card.Footer/>
             </Card> : null
         ))}
       </WingBlank>

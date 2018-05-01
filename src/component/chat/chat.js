@@ -23,11 +23,11 @@ class Chat extends React.Component {
     },0)
   }
   handleSubmit() {
-    const from = this.props.user._id;
-    const to = this.props.match.params.user;
-    const msg = this.state.text;
-    this.props.sendMsg({from, to, msg});
-    this.setState({text:''});
+    const from = this.props.user._id
+    const to = this.props.match.params.user
+    const msg = this.state.text
+    this.props.sendMsg({from, to, msg})
+    this.setState({text:''})
   }
 
   componentWillUnmount(){

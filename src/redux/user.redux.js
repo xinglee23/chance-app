@@ -1,9 +1,10 @@
-import axios from 'axios';
-import { getRedirectPath } from '../util';
-const AUTH_SUCCESS = 'AUTH_SUCCESS';
-const LOGOUT = 'LOGOUT';
-const ERROR_MSG = 'ERROR_MSG';
-const LOAD_DATA = 'LOAD_DATA';
+import axios from 'axios'
+import { getRedirectPath } from '../util'
+const AUTH_SUCCESS = 'AUTH_SUCCESS'
+const LOGOUT = 'LOGOUT'
+const ERROR_MSG = 'ERROR_MSG'
+const LOAD_DATA = 'LOAD_DATA'
+const CHANGE_REDIRECT = 'CHANGE_REDIRECT'
 
 const initState = {
   redirectTo: '',
@@ -30,13 +31,12 @@ export function loadData(userinfo) {
 }
 
 export function update(data) {
-  console.log(".......")
   return dispatch => {
     axios.post('/user/update', data)
       .then(res => {
         console.log(JSON.stringify(res))
         if(res.status === 200 && res.data.code === 0) {
-          console.log(res.data.data)
+          console.log("update is  ",res.data.data)
           dispatch(authSuccess(res.data.data))
         } else {
           dispatch(errorMsg(res.data.msg))
@@ -60,6 +60,8 @@ export function user(state=initState, action) {
       return {...state, ...action.payload}
     case LOGOUT:
       return {initState, redirectTo: '/login'}
+    case CHANGE_REDIRECT:
+      return {...state, redirectTo: action.payload}
       default:
       return state
    }
@@ -113,4 +115,14 @@ export function register({user, pwd, repeatpwd, type}) {
       }
     })
   }
+}
+
+export function changeRedirectTo(redirect) {
+  return dispatch => {
+    dispatch(changeRedirectTo(redirect))
+  }
+}
+
+function changeRedirectTo(redirect) {
+  return {type: CHANGE_REDIRECT, payload: redirect}
 }

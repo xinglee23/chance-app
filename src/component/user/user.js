@@ -31,8 +31,8 @@ class User extends React.Component {
     const Brief = List.Brief;
     return props.user ? (
       <div>
-        <Result 
-          img={<img src={require(`../img/${this.props.avatar.png}`)} style={{width:50}} alt="" />}
+        <Result                 
+          img={<img src={require(`../img/${this.props.avatar}.png`)} style={{width:50}} alt="" />}
           title={this.props.user}
           message={props.type==='boss' ? props.company : null}
           >

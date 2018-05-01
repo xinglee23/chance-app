@@ -29,15 +29,16 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    // const pathname = this.props.location.pathname;
-    const pathname = '/boss';
+    const pathname = this.props.location.pathname;
+    console.log("pathname now is " + JSON.stringify(pathname))
+    // const pathname = '/boss';
     const user = this.props.user;
     const navList = [
       {
         path: '/boss',
         text: '牛人',
         icon: 'boss',
-        title: '牛人列表',
+        title: 'BOSS列表',
         component: Boss,
         hide: user.type === 'genius'
       },
