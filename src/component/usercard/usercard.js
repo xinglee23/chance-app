@@ -16,6 +16,7 @@ class UserCard extends React.Component {
   }
 
   handleClick(v) {
+    console.log("what is ")
     this.props.history.push(`/chat/${v._id}`)
     this.props.changeRedirectTo(`/chat/${v._id}`)
   }
