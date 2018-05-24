@@ -17,15 +17,15 @@ class NavLinkbar extends React.Component {
     data: propTypes.array.isRequired
   }
   render() {
-  
+    
     const navList = this.props.data.filter(v => !v.hide);
+    console.log('navList issss' + JSON.stringify(navList));
     const pathname = this.props.location.pathname;
     return (
       <div>
-        <TabBar>
+        <TabBar styles="z-index:500">
           {navList.map(v => (
             <TabBar.Item
-              
               key={v.path}
               title={v.text}
               icon={{uri: require(`./img/${v.icon}.png`)}}
@@ -33,7 +33,6 @@ class NavLinkbar extends React.Component {
               selected={pathname === v.path}
               onPress={() => {
                 this.props.history.push(v.path)
-                console.log(pathname + "....." + v.path)
               }}
             >
             </TabBar.Item>

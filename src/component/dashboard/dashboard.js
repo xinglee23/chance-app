@@ -7,6 +7,7 @@ import Boss from '../../component/boss/boss';
 import Genius from '../../component/genius/genius';
 import Msg from '../../component/msg/msg';
 import User from '../../component/user/user';
+import Company from '../../component/company/company';
 import { getMsgList, sendMsg, recvMsg } from '../../redux/chat.redux';
 
 @connect(
@@ -56,6 +57,13 @@ class Dashboard extends React.Component {
         component: Msg
       },
       {
+        path: '/company',
+        text: '公司',
+        icon: 'company',
+        title: '公司',
+        comonent: Company
+      },
+      {
         path: '/me',
         text: '我',
         icon: 'user',
@@ -74,8 +82,7 @@ class Dashboard extends React.Component {
             ))}
           </Switch>
         </div>
-
-        <NavLinkbar data={navList}></NavLinkbar>
+        <NavLinkbar data={navList} />
       </div>
     )
   }

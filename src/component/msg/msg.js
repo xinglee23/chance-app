@@ -29,8 +29,8 @@ class Msg extends React.Component{
 
     return (
       /* thumb={require('../../img/${userinfo[targetId].avatar}.png')} */
-      <div>  
-        {chatList.map(v => {
+      <div id="msg-page">
+        {chatList.map(v=>{
           const lastItem = this.getLast(v);
           const targetId = lastItem.from === userid ? lastItem.to : lastItem.from;
           const unreadNum = v.filter(v=>!v.read&&v.to===userid).length;
@@ -38,21 +38,23 @@ class Msg extends React.Component{
           if(!userinfo[targetId]) {
             return null;
           }
-          <List key={lastItem._id}>
-            <Item
-              extra={<Badge text={unreadNum}></Badge>}
-              style={{zIndex: 1}}
-              thumb={require('../img/boy.png')}
-              onClick={() => {
-                this.props.history.push(`/chat/${targetId}`)
-              }}
-              arrow="horizontal"
-            >
-              {lastItem.content}
-              <Brief>{userinfo[targetId].name}</Brief>
-            </Item>
-          </List>
-          })}
+          return (
+            <List key={lastItem._id}>
+              <Item
+                extra={<Badge text={unreadNum}></Badge>}
+                style={{zIndex: 1}}
+                thumb={require('../img/boy.png')}
+                onClick={() => {
+                  this.props.history.push(`/chat/${targetId}`)
+                }}
+                arrow="horizontal"
+              >
+                {lastItem.content}
+                <Brief>{userinfo[targetId].name}</Brief>
+              </Item>
+            </List>)
+          })
+        }
       </div>
     )
   }

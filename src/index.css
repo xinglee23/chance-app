@@ -1,16 +1,32 @@
-.error-msg{
-  color: #f50;
+h2 {
+  text-align: center;
 }
+.error-msg{
+  position: fixed;
+  top: 394px;
+  left: 128px;
+  color: #f50;
+  z-index: 1;
+}
+
+.am-button {
+  background-color: #54cbc3;
+}
+
 .am-tab-bar{
   position:fixed;
   bottom:0;
+  height: 50px;
   width:100%;
+  z-index: 1;
 }
 
-.fixed-header.am-navbar{
+.fixed-header, .am-navbar{
   position:fixed;
   top:0;
   width:100%;
+  background-color: #54cbc3;
+  z-index: 2;
 }
 
 .page-content{

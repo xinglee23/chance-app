@@ -16,6 +16,7 @@ class User extends React.Component {
   }
 
   logout() {
+    console.log("this is what")
     const alert = Modal.alert; 
     alert('温馨提示', '确认退出登陆吗？', [
       { text: '取消'},
@@ -46,7 +47,7 @@ class User extends React.Component {
         </List>
         <WhiteSpace />
         <List>
-          <Item style={{zIndex:1}} onClick={this.logout}>退出登陆</Item>
+          <Item style={{zIndex:100}} onClick={this.logout}>退出登陆</Item>
         </List>
       </div>
     ) : <Redirect to={props.redirectTo} />
