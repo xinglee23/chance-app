@@ -23,7 +23,7 @@ class NavLinkbar extends React.Component {
     const pathname = this.props.location.pathname;
     return (
       <div>
-        <TabBar styles="z-index:500">
+        <TabBar>
           {navList.map(v => (
             <TabBar.Item
               key={v.path}
