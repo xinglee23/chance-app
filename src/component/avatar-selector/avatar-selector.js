@@ -11,6 +11,13 @@ class AvatarSelector extends React.Component {
     super(props);
     this.state = {}
   }
+  rr() {
+    this.setState({
+      
+    }, function() {
+      console.log(this.state)
+    })
+  }
   render() {
     const avatarList = 'boy,bull,chick,crab,girl,hedgehog,hippopotamus,koala,lemur,man,pig,tiger,whale,woman,zebra'
                         .split(",")
