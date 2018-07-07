@@ -1,5 +1,5 @@
 ## 一个简易的招聘系统
-##项目结构
+## 项目结构
 ```
 ── server
 │   ├── model.js
@@ -91,6 +91,9 @@
 	* 3.前端: 使用React全家桶+ES6+Webpack等技术
 	* 4.后端: 使用Node + express + mongodb + socketIO等技术
 	* 5.采用模块化、组件化、工程化的模式开发
+
+## 演示
+![avatar](/Users/wuxingli/chance-app/src/mp4/1234.png)
 
 ## 技术栈
   * React

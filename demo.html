@@ -5,25 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <style>
+    #content {
+      position: absolute;
+      top: 50%;
+      height: 240px;
+      margin-top: -120px; /* negative half of the height */
+}
+  </style>
 </head>
 <body>
+  <div class="content"> Content goes here</div>  
+  <ul id="list">
+      <li id="item1">item1</li>
+      <li id="item2">item2</li>
+      <li id="item3">item3</li>
+      <li id="item4">item4</li>
+    </ul>
   <script>
-    function loadImg(src, callback, fail) {
-      var img = document.createElement('img')
-      img.onload = function() {
-        callback(img)
+    window.onload = function() {
+      var ulNode = document.getElementById('list')
+      var liNode = ulNode.childNodes || ulNode.children
+      for(var i = 0; i < liNode.length; i++) {
+        liNode[i].addEventListener('click', function(e) {
+          alert(e.target.innerHTML)
+        }, false)
       }
-      img.error = function() {
-        fail()
-      }
-      img.src = src
     }
-    var src = 'https://www.google.com/search?q=d&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjCm76wjsbbAhWJxLwKHcMLDwYQ_AUICigB&biw=1278&bih=628&dpr=2#imgrc=jvJDIZL85AW6KM:'
-    loadImg(src, function(img) {
-      console.log(img.width)
-    }, function() {
-      console.log('fail')
-    })
+    window.onload = function() {
+      var ulNode = document.getElementById("list")
+      ulNode.addEventListener('click', function(e) {
+        if(e.target && e.target.nodeName.toUpperCase() == 'LI') {
+          alert(e.target.innerHTML)
+        }
+      }, false)
+    }
   </script>
 </body>
 </html>
