@@ -93,8 +93,10 @@
 	* 5.采用模块化、组件化、工程化的模式开发
 
 ## 演示
-![avatar](/Users/wuxingli/chance-app/src/mp4/1234.png)
-
+#### 注册
+![register](https://raw.githubusercontent.com/xinglee23/chance-app/master/src/mp4/register.gif)
+#### 登陆
+![login](https://raw.githubusercontent.com/xinglee23/chance-app/master/src/mp4/login.gif)
 ## 技术栈
   * React
   * React-Router
