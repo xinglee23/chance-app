@@ -101,6 +101,7 @@
   * React
   * React-Router
   * React-Redux
+  * antd-mobile
   * Babel
   * Webpack
   * Node.js
