@@ -24,21 +24,6 @@
     │   ├── genius
     │   │   └── genius.js
     │   ├── img
-    │   │   ├── boy.png
-    │   │   ├── bull.png
-    │   │   ├── chick.png
-    │   │   ├── crab.png
-    │   │   ├── girl.png
-    │   │   ├── hedgehog.png
-    │   │   ├── hippopotamus.png
-    │   │   ├── koala.png
-    │   │   ├── lemur.png
-    │   │   ├── man.png
-    │   │   ├── pig.png
-    │   │   ├── tiger.png
-    │   │   ├── whale.png
-    │   │   ├── woman.png
-    │   │   └── zebra.png
     │   ├── imooc.form
     │   │   └── imooc.form.js
     │   ├── logo
