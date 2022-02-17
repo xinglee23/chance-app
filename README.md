@@ -87,8 +87,8 @@
   * React-Router
   * React-Redux
   * antd-mobile
-  * Babel
   * Webpack
+  * Babel
   * Node.js
   * mongodb
   * express
